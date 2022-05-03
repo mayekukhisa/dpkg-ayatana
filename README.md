@@ -4,7 +4,8 @@ Dpkg-ayatana is a command-line tool for installing Debian packages (\*.deb files
 
 ## Features
 
-> **Note:** There are currently no features yet. This tool is in its early stages of development.
+-  Install multiple packages.
+-  Rebuild packages that depend on libappindicator to use [libayatana-appindicator][2].
 
 ## Getting started
 
@@ -18,7 +19,7 @@ This project depends on the command-line tool below being available in your envi
 
 ### Downloading the codebase
 
-[Fork this repo][2] on GitHub and clone your fork. Alternatively, you can [download this repo][3] as a zip file and extract it.
+[Fork this repo][3] on GitHub and clone your fork. Alternatively, you can [download this repo][4] as a zip file and extract it.
 
 ### Running the tool
 
@@ -31,14 +32,15 @@ This project depends on the command-line tool below being available in your envi
 
 ## Author
 
-Mayeku Khisa - _Maintainer_ - [@mayekukhisa][4].
+Mayeku Khisa - _Maintainer_ - [@mayekukhisa][5].
 
 ## License
 
-Dpkg-ayatana is available under the [MIT License][5]. Copyright &copy; 2022 Mayeku Khisa.
+Dpkg-ayatana is available under the [MIT License][6]. Copyright &copy; 2022 Mayeku Khisa.
 
 [1]: https://tracker.debian.org/pkg/libappindicator
-[2]: https://github.com/mayekukhisa/dpkg-ayatana/fork
-[3]: https://github.com/mayekukhisa/dpkg-ayatana/archive/refs/heads/main.zip
-[4]: https://github.com/mayekukhisa
-[5]: LICENSE
+[2]: https://tracker.debian.org/pkg/libayatana-appindicator
+[3]: https://github.com/mayekukhisa/dpkg-ayatana/fork
+[4]: https://github.com/mayekukhisa/dpkg-ayatana/archive/refs/heads/main.zip
+[5]: https://github.com/mayekukhisa
+[6]: LICENSE
