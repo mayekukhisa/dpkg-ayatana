@@ -21,8 +21,9 @@ function show_help {
    echo "  libappindicator package"
    echo ""
    echo "Options:"
-   echo "  --version   Report tool version and exit"
-   echo "  -h, --help  Show this message and exit"
+   echo "  --version              Report tool version and exit"
+   echo "  -i, --install PACKAGE  Install package(s)"
+   echo "  -h, --help             Show this message and exit"
 }
 
 function main {
@@ -31,11 +32,17 @@ function main {
       exit 1
    fi
 
-   ARGS="$(getopt -n "$APP_NAME" -o h -l version,help -- "$@")"
+   ARGS="$(getopt -n "$APP_NAME" -o ih -l version,install,help -- "$@")"
    eval set -- "$ARGS"
+
+   op_install=false
 
    while :; do
       case "$1" in
+      -i | --install)
+         op_install=true
+         shift
+         ;;
       --version)
          echo "$VERSION"
          exit
@@ -50,6 +57,22 @@ function main {
          ;;
       esac
    done
+
+   if $op_install; then
+      # Test if running with superuser privilege
+      if [[ "$EUID" -ne "0" ]]; then
+         echo >&2 "Error: Requested operation requires superuser privilege"
+         exit 1
+      fi
+
+      # Test if a positional argument was provided
+      if [[ "$#" -eq 0 ]]; then
+         echo >&2 "Error: Path to a package is required"
+         exit 1
+      fi
+
+      dpkg -i -- "$@"
+   fi
 }
 
 main "$@"
