@@ -22,8 +22,40 @@ function show_help {
    echo ""
    echo "Options:"
    echo "  --version              Report tool version and exit"
-   echo "  -i, --install PACKAGE  Install package(s)"
+   echo "  -i, --install PACKAGE  Rebuild and install package(s)"
    echo "  -h, --help             Show this message and exit"
+}
+
+function rebuild_package {
+   # Validate file path
+   if [[ "$1" != *deb || ! -e "$1" ]]; then
+      echo "Skipped $1 ... File not found or not a Debian package"
+      return
+   fi
+
+   package_info="$(dpkg -I -- "$1")"
+   package_name="$(awk -- '/Package:/ { print $2 }' <<<"$package_info")"
+   package_version="$(awk -- '/Version:/ { print $2 }' <<<"$package_info")"
+
+   # Rebuild package if associated with libappindicator
+   if grep -q "libappindicator" <<<"$package_info"; then
+      cd -- "$TMP_DIR"
+      echo "Rebuilding $package_name ($package_version) ..."
+
+      replacement_package="$TMP_DIR/$package_name-$package_version.deb"
+
+      # Replace libappindicator with libayatana-appindicator in package dependencies
+      dpkg-deb -R -- "$1" "$package_name"
+      sed -i -- "s/libappindicator/libayatana-appindicator/g" "$package_name/DEBIAN/control"
+      dpkg-deb -b -- "$package_name" "$replacement_package"
+
+      echo "Overwriting $1 ..."
+      cp -f -- "$replacement_package" "$1"
+   else
+      echo "Skipped rebuilding $package_name ($package_version) ... Package ok!"
+   fi
+
+   cleared_packages+=("$1")
 }
 
 function main {
@@ -71,7 +103,15 @@ function main {
          exit 1
       fi
 
-      dpkg -i -- "$@"
+      cleared_packages=() # An array for holding packages cleared for installation
+
+      for file_path in "$@"; do
+         rebuild_package "$(readlink -f -- "$file_path")"
+      done
+
+      if [[ "${#cleared_packages[@]}" -ne 0 ]]; then
+         dpkg -i -- "${cleared_packages[@]}"
+      fi
    fi
 }
 
