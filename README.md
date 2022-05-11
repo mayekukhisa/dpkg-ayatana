@@ -9,38 +9,31 @@ Dpkg-ayatana is a command-line tool for installing Debian packages (\*.deb files
 
 ## Getting started
 
-This guide shows how to obtain a copy of the project and get the tool running on your local machine.
+This guide shows how to install the tool on your local machine.
 
 ### System requirement
 
-This project depends on the command-line tool below being available in your environment:
+Dpkg-ayatana depends on the command-line tool below being available in your environment:
 
 -  `bash`
 
-### Downloading the codebase
+### Installation
 
-[Fork this repo][3] on GitHub and clone your fork. Alternatively, you can [download this repo][4] as a zip file and extract it.
+To get Dpkg-ayatana, run the installation script as shown below:
 
-### Running the tool
-
-1. Navigate into the project's bin directory.
-2. Execute the command below to see usage info:
-
-   ```shell
-   ./dpkg-ayatana.sh --help
-   ```
+```shell
+curl -sS -- "https://raw.githubusercontent.com/mayekukhisa/dpkg-ayatana/main/installer.sh" | sudo bash
+```
 
 ## Author
 
-Mayeku Khisa - _Maintainer_ - [@mayekukhisa][5].
+Mayeku Khisa - _Maintainer_ - [@mayekukhisa][3].
 
 ## License
 
-Dpkg-ayatana is available under the [MIT License][6]. Copyright &copy; 2022 Mayeku Khisa.
+Dpkg-ayatana is available under the [MIT License][4]. Copyright &copy; 2022] Mayeku Khisa.
 
 [1]: https://tracker.debian.org/pkg/libappindicator
 [2]: https://tracker.debian.org/pkg/libayatana-appindicator
-[3]: https://github.com/mayekukhisa/dpkg-ayatana/fork
-[4]: https://github.com/mayekukhisa/dpkg-ayatana/archive/refs/heads/main.zip
-[5]: https://github.com/mayekukhisa
-[6]: LICENSE
+[3]: https://github.com/mayekukhisa
+[4]: LICENSE
