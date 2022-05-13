@@ -18,7 +18,7 @@ set -e
 app_path="$(readlink -f -- "${BASH_SOURCE[0]}")"
 
 export APP_NAME="dpkg-ayatana"
-export VERSION="1.0.0-snapshot"
+export VERSION="1.0.0"
 export TMP_DIR="/tmp/$APP_NAME"
 
 mkdir -p "$TMP_DIR"
