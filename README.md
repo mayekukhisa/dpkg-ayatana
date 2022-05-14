@@ -31,7 +31,7 @@ Mayeku Khisa - _Maintainer_ - [@mayekukhisa][3].
 
 ## License
 
-Dpkg-ayatana is available under the [MIT License][4]. Copyright &copy; 2022] Mayeku Khisa.
+Dpkg-ayatana is available under the [MIT License][4]. Copyright &copy; 2022 Mayeku Khisa.
 
 [1]: https://tracker.debian.org/pkg/libappindicator
 [2]: https://tracker.debian.org/pkg/libayatana-appindicator
