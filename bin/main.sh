@@ -64,20 +64,20 @@ function main {
       exit 1
    fi
 
-   ARGS="$(getopt -n "$APP_NAME" -o hi -l version,install,help -- "$@")"
+   ARGS="$(getopt -n "$APP_NAME" -o ih -l version,install,help -- "$@")"
    eval set -- "$ARGS"
 
    op_install=false
 
    while :; do
       case "$1" in
-      -i | --install)
-         op_install=true
-         shift
-         ;;
       --version)
          echo "$VERSION"
          exit
+         ;;
+      -i | --install)
+         op_install=true
+         shift
          ;;
       -h | --help)
          show_help
