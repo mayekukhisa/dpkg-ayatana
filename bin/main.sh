@@ -17,7 +17,7 @@ set -e
 function show_help {
    echo "Usage: $APP_NAME [OPTIONS]"
    echo ""
-   echo "  A wrapper around dpkg for installing packages that depend on the"
+   echo "  A wrapper around dpkg for installing packages that depend on the deprecated"
    echo "  libappindicator package"
    echo ""
    echo "Options:"
