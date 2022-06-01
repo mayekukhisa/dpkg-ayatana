@@ -42,15 +42,15 @@ function rebuild_package {
       cd -- "$TMP_DIR"
       echo "Rebuilding $package_name ($package_version) ..."
 
-      replacement_package="$TMP_DIR/$package_name-$package_version.deb"
+      substitute_package="$TMP_DIR/$package_name-$package_version.deb"
 
       # Replace libappindicator with libayatana-appindicator in package dependencies
       dpkg-deb -R -- "$1" "$package_name"
       sed -i -- "s/libappindicator/libayatana-appindicator/g" "$package_name/DEBIAN/control"
-      dpkg-deb -b -- "$package_name" "$replacement_package"
+      dpkg-deb -b -- "$package_name" "$substitute_package"
 
       echo "Overwriting $1 ..."
-      cp -f -- "$replacement_package" "$1"
+      cp -f -- "$substitute_package" "$1"
    else
       echo "Skipped rebuilding $package_name ($package_version) ... Package ok!"
    fi
